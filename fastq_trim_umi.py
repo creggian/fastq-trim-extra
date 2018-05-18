@@ -19,7 +19,7 @@ with gzip.open(ifilename, "r") as handle, bgzf.BgzfWriter(ofilename, "wb") as fo
     for rec in SeqIO.parse(handle, "fastq"):
 	umi = rec.seq[0:umilen]
 
-        rid = rec.id + ":" + str(umi)
+        rid = rec.description + ":" + str(umi)
         rseq = Seq(str(rec.seq)[umilen:], SingleLetterAlphabet)
         rq = rec.letter_annotations["phred_quality"][umilen:]
 
